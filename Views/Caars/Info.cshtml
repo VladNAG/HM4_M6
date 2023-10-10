@@ -1,0 +1,16 @@
+﻿@model CarViewModel
+@{
+    ViewData["Title"] = "Car Info";
+}
+<h1>@ViewData["Title"]</h1>
+<div>
+    <p>@Model.Id </p>
+    <p>@Model.Name </p>
+    <p>@Model.Price </p>
+    <p>@Model.Model </p>
+     @using (Html.BeginForm("Test", "Caars", FormMethod.Get))
+               {
+                   <input type="hidden"/>
+                  <button  type="submit">Return</button>
+               }
+</div>

@@ -23,10 +23,10 @@ namespace HM4_M6.Controllers
 
         [HttpPost]
         [Route("Caars/Test")]
-        public IActionResult GreateTest(int id, string car, int price)
+        public IActionResult GreateTest(int id, string car, int price, string odel)
         {
 
-            CarViewModel ca = new CarViewModel { Id = id, Name = car, Price = price };
+            CarViewModel ca = new CarViewModel { Id = id, Name = car, Price = price, Model= odel };
             _iCarSevises.Create(ca);
             List<CarViewModel> model = _iCarSevises.GetAll();
             return View("~/Views/Caars/Test.cshtml", model);
@@ -41,8 +41,8 @@ namespace HM4_M6.Controllers
         }
 
         [HttpGet]
-        [Route("Tested")]
-        public IActionResult Tested(int id)
+        [Route("Info")]
+        public IActionResult Info(int id)
         {
             CarViewModel model = _iCarSevises.Get(id);
             return View(model);

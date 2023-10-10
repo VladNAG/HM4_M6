@@ -1,5 +1,7 @@
 ﻿using HM4_M6.Interface;
 using HM4_M6.Models;
+using static System.Net.WebRequestMethods;
+
 namespace HM4_M6.Data
 
 {
@@ -7,10 +9,10 @@ namespace HM4_M6.Data
     {
         public List<CarViewModel> _cars =  new List<CarViewModel>()
                 {
-                    new CarViewModel {Id=1, Name = "Tesla", Model = "Model X",  Price = 50000},
-                    new CarViewModel {Id=2, Name = "Lusid", Model = "Luxury",Price = 120000 },
-                    new CarViewModel {Id=3, Name = "BMW", Model = "X5",Price = 70000 },
-                    new CarViewModel {Id = 4,  Name = "Ford", Model = "Mustang", Price = 140000 }
+                    new CarViewModel {Id=1, Name = "Tesla", Model = "Model X",  Price = 45200},
+                    new CarViewModel {Id=2, Name = "Lusid", Model = "Luxury",Price = 125000, imgLink = "https://auto.ria.com/uk/auto_lucid_air_35293722.html"},
+                    new CarViewModel {Id=3, Name = "BMW", Model = "X5",Price = 98000, imgLink = "https://auto.ria.com/auto_bmw_x5_32789005.html" },
+                    new CarViewModel {Id = 4,  Name = "Ford", Model = "Mustang", Price = 30000}
                 };
             
         
