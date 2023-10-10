@@ -47,5 +47,16 @@ namespace HM4_M6.Controllers
             CarViewModel model = _iCarSevises.Get(id);
             return View(model);
         }
+        [HttpPost]
+        [Route("UpdateTest")]
+        public IActionResult UpdateTest(int id, string car, int price, string odel)
+        {
+
+            CarViewModel ca = new CarViewModel { Id = id, Name = car, Price = price, Model = odel };
+            _iCarSevises.Update(ca);
+            List<CarViewModel> model = _iCarSevises.GetAll();
+            return View("~/Views/Caars/Test.cshtml", model);
+        }
+
     }
 }
