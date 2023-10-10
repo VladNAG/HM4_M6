@@ -1,6 +1,7 @@
-﻿using HM4_M6.Models;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using HM4_M6.Controllers;
+using HM4_M6.Models;
 
 namespace HM4_M6.Controllers
 {
@@ -15,9 +16,14 @@ namespace HM4_M6.Controllers
 
         public IActionResult Index()
         {
+
             return View();
         }
-
+        [HttpGet]
+        public IActionResult ListCar()
+        {
+            return View();
+        }
         public IActionResult Privacy()
         {
             return View();

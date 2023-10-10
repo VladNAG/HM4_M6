@@ -1,0 +1,29 @@
+﻿@model CarViewModel
+@{
+    ViewData["Title"] = "Car Info";
+}
+<h1>@ViewData["Title"]</h1>
+<div>
+    <p>ID: @Model.Id </p>
+    <p>Neme: @Model.Name </p>
+    <p>Model: @Model.Model </p>
+    <p>Price: @Model.Price </p>
+    
+     @using (Html.BeginForm("Test", "Caars", FormMethod.Get))
+               {
+                   <input type="hidden"/>
+                  <button  type="submit">Return</button>
+               }
+               <h4 style="color:saddlebrown">Update CAR</h4>
+            @using (Html.BeginForm("UpdateTest", "Caars", FormMethod.Post))
+               {
+            <input type="hidden" name="id" value="@Model.Id"/>
+           <label>Car</label>
+            <input type="text" name="car"/>
+           <label>Model</label>
+           <input type="text" name="odel"/>
+           <label>Price</label>
+            <input type="number" name="price"/>
+           <button type="submit">Update</button>
+              }
+</div>
