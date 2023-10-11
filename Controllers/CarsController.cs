@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using HM4_M6.Controllers;
 using HM4_M6.Interface;
 using HM4_M6.Models;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace HM4_M6.Controllers
 {
@@ -23,13 +24,31 @@ namespace HM4_M6.Controllers
 
         [HttpPost]
         [Route("Caars/Test")]
-        public IActionResult GreateTest(int id, string car, int price, string odel)
+        public IActionResult GreateTest(CarViewModel ca)
         {
-
-            CarViewModel ca = new CarViewModel { Id = id, Name = car, Price = price, Model= odel };
-            _iCarSevises.Create(ca);
-            List<CarViewModel> model = _iCarSevises.GetAll();
-            return View("~/Views/Caars/Test.cshtml", model);
+            if (ModelState.IsValid)
+            {
+                _iCarSevises.Create(ca);
+                List<CarViewModel> model = _iCarSevises.GetAll();
+            
+                return View("~/Views/Caars/Test.cshtml", model);
+            }
+            string errorMessages = "";
+            // проходим по всем элементам в ModelState
+            foreach (var item in ModelState)
+            {
+                // если для определенного элемента имеются ошибки
+                if (item.Value.ValidationState == ModelValidationState.Invalid)
+                {
+                    errorMessages = $"{errorMessages}\nОшибки для свойства {item.Key}:\n";
+                    // пробегаемся по всем ошибкам
+                    foreach (var error in item.Value.Errors)
+                    {
+                        errorMessages = $"{errorMessages}{error.ErrorMessage}\n";
+                    }
+                }
+            }
+            return View(errorMessages);
         }
 
         [HttpPost]
@@ -44,15 +63,15 @@ namespace HM4_M6.Controllers
         [Route("Info")]
         public IActionResult Info(int id)
         {
+            
             CarViewModel model = _iCarSevises.Get(id);
             return View(model);
         }
         [HttpPost]
         [Route("UpdateTest")]
-        public IActionResult UpdateTest(int id, string car, int price, string odel)
+        public IActionResult UpdateTest(CarViewModel ca)
         {
 
-            CarViewModel ca = new CarViewModel { Id = id, Name = car, Price = price, Model = odel };
             _iCarSevises.Update(ca);
             List<CarViewModel> model = _iCarSevises.GetAll();
             return View("~/Views/Caars/Test.cshtml", model);
