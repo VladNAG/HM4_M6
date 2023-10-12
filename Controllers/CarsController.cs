@@ -4,9 +4,12 @@ using HM4_M6.Controllers;
 using HM4_M6.Interface;
 using HM4_M6.Models;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+using HM4_M6.Filter;
+using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace HM4_M6.Controllers
 {
+    
     public class CaarsController : Controller
     {
         private ICarSevises _iCarSevises;
@@ -53,20 +56,25 @@ namespace HM4_M6.Controllers
 
         [HttpPost]
         [Route("DeleteTest")]
+        [CustomExceptionFilter]
         public IActionResult DeleteTest(int id)
         {
+            if(id == 1 || id == 2)
+            throw new Exception();
             _iCarSevises.Delete(id);
             return RedirectToAction("Test");
         }
 
+        
         [HttpGet]
         [Route("Info")]
         public IActionResult Info(int id)
         {
             
-            CarViewModel model = _iCarSevises.Get(id);
+            var model = _iCarSevises.Get(id);
             return View(model);
         }
+
         [HttpPost]
         [Route("UpdateTest")]
         public IActionResult UpdateTest(CarViewModel ca)

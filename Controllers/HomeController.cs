@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using HM4_M6.Controllers;
 using HM4_M6.Models;
+using HM4_M6.Filter;
 
 namespace HM4_M6.Controllers
 {
@@ -14,9 +15,9 @@ namespace HM4_M6.Controllers
             _logger = logger;
         }
 
+  
         public IActionResult Index()
         {
-
             return View();
         }
         [HttpGet]
