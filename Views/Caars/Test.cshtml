@@ -10,7 +10,7 @@
             <div>
                 <p> Car: @ar.Name</p>
                 <p> Model: @ar.Model</p>
-               <p> @using (Html.BeginForm("DeleteTest", "Caars", FormMethod.Post))
+               <span> @using (Html.BeginForm("DeleteTest", "Caars", FormMethod.Post))
                {
                    <input type="hidden" name="id" value="@ar.Id" />
                  <button  style="color:brown" type="submit">Delete</button>
@@ -20,7 +20,7 @@
                {
                    <input type="hidden" name="id" value="@ar.Id"/>
                  <span>  <button  type="submit">Info</button></span>
-               }</p> 
+               }</span> 
               
                
             </div>
@@ -29,18 +29,22 @@
     <div>
  
     </div>
-    <div>
-        <h4 style="color:saddlebrown">ADD CAR</h4>
+     <div>
+            <h4 style="color:saddlebrown">ADD CAR</h4>
             @using (Html.BeginForm("GreateTest", "Caars", FormMethod.Post))
-               {<label>ID</label>
-            <input type="number" name="id"/>
-           <label>Car</label>
-            <input type="text" name="car"/>
-           <label>Model</label>
-           <input type="text" name="odel"/>
-           <label>Price</label>
-            <input type="number" name="price"/>
-           <button type="submit">ADD</button>
+               {
+                 <p>  <label>ID   </label><br />
+            <input type="number" name="id"/></p>
+            <p><label>Car  </label><br />
+            <input type="text" name="Name"/> </p>
+            
+            <p><label>Model</label><br />
+           <input type="text" name="Model"/> </p>
+           
+           <p>  <label>Price </label><br />
+            <input type="number" name="price"/> </p>
+           
+          <p> <button type="submit">ADD</button></p>
               }
     </div>
 </div>
