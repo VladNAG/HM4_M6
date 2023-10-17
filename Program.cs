@@ -2,8 +2,11 @@ using System.Data;
 using HM4_M6.Data;
 using HM4_M6.Interface;
 using HM4_M6.Servises;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer();
+builder.Services.AddAuthorization();
 builder.Services.AddTransient<ITimer, TimerServise>();
 builder.Services.AddSingleton<IDataCars, DataCars>();
 builder.Services.AddTransient<ICarSevises, CarServises>();
